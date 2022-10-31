@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<h5 class="border-bottom pb-2 mb-3">{% if Pet %}{{Pet.pet_owner.user_name}}님의 반려동물 {{Pet.pet_name}}{% else %}반려동물 등록{% endif %}</h5>
+<div class="content_block">
+    <div class="table-responsive">
+        {% if Pet %}
+        <!-- <table class="table table-sm table-hover">
+            <thead>
+                <tr class="text-center">
+                <th>번호</th>
+                <th style="width:40%">제 목</th>
+                <th>소속</th>
+                <th>조회수</th>
+                <th>작성자</th>
+                <th>{{Pet.pet_name}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr class="text-center">
+                <!-- 번호 -->
+                <td class="align-middle">
+                    <span>{{forloop.revcounter}}</span>
+                </td>
+                <!-- 제목 -->
+                <td class="text-left align-middle">                        
+                    <a href="{{ board.get_absolute_url }}" class="subject-link">{{board.post_name}}</a>
+                <!-- 소속 -->
+                <td class="align-middle text-left small">
+                    <small>{{board.post_author.company}}</small>
+                </td>
+                <td class="align-middle text-left small">
+                    <small >{{board.counting}}</small>
+                </td>
+                <!-- 작성자 -->
+                <td class="align-middle text-left small">
+                    <small>{{board.post_author.user_name}}</small>
+                </td>
+                <!-- 날짜 -->
+                <td class="align-middle" style="font-size:0.75em">
+                </td>
+            </tr>
+            
+            
+            </tbody>
+        </table> -->
+        {% else %}
+        <h4> 등록된 반려동물이 없습니다. 새로 등록해 주세요.</h4>
+        <a href="{% url 'App_Main:pet_create' %}" class="btn btn-sm text-light bg-dark" ">반려 동물 등록</a>
+        {% endif %}
+
+        {% if messages %}
+        {% for message in messages %}
+            <div class="row" style="margin:20px auto;">
+            <div class="col-sm-12">
+                <div class="alert alert-danger">
+                <strong>{{ message.tags }}!</strong> {{ message.message }}
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+        {% endif %}
+    </div>  
+</div>
+{% endblock %}
