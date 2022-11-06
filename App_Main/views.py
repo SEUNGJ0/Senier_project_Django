@@ -11,10 +11,12 @@ def Main_Home(request):
     return render(request, 'Main_Home.html')
 
 def Pet_info_View(request):
-    Pet = Pet_info.objects.get(pet_owner=request.user)
-    print(Pet)
+    try:
+        Pet = Pet_info.objects.get(pet_owner=request.user)
+    except:
+        Pet = None
     return render(request, 'Pet_info.html',{'Pet' : Pet})
-
+    
 @login_required(login_url='App_Auth:login')
 def Pet_create_View(request):
     if request.method == 'POST':
@@ -31,3 +33,6 @@ def Pet_create_View(request):
 
     context = {'form': form}
     return render(request, 'Pet_create.html',context)
+
+def Pet_statistics_View(request):
+    return render(request, 'Pet_statistics.html')
