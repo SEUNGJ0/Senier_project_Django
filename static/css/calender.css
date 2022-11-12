@@ -123,7 +123,7 @@
 }
 
 .resv-bg{
-    width: 90%;
+    width: 50%;
     position: relative;
     padding: 5% 5%;
     background-color: #ffffff;
@@ -255,4 +255,7 @@
         border-radius: 0%;
     }
 
+    .event-itm{
+        font-size: 15px;
+    }
 }

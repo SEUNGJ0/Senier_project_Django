@@ -1,4 +1,3 @@
-from tabnanny import verbose
 from django.db import models
 from django.urls import reverse
 from App_User.models import User
@@ -8,7 +7,7 @@ class Pet_info(models.Model):
 
     pet_name = models.CharField(max_length = 100)
     pet_birth = models.DateField(null = True, blank = True)
-    pet_weight = models.DecimalField(decimal_places=5, max_digits = 100)
+    pet_weight = models.DecimalField(decimal_places=2, max_digits = 100)
     pet_race = models.CharField(max_length = 100, verbose_name="견종")
 
     class Meta:

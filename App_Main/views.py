@@ -15,7 +15,13 @@ def Pet_info_View(request):
         Pet = Pet_info.objects.get(pet_owner=request.user)
     except:
         Pet = None
-    return render(request, 'Pet_info.html',{'Pet' : Pet})
+
+    try:
+        Pet_diet_set = Pet_diet_set.objects.get(pet_name = Pet.pet_name)
+    except:
+        Pet_diet_set = None
+
+    return render(request, 'Pet_info.html',{'Pet' : Pet, 'Pet_diet_set' : Pet_diet_set})
     
 @login_required(login_url='App_Auth:login')
 def Pet_create_View(request):
@@ -32,6 +38,28 @@ def Pet_create_View(request):
         form = PetForm() # -> unboundForm
 
     context = {'form': form}
+    return render(request, 'Pet_create.html',context)
+  
+@login_required(login_url='App_Auth:login')
+def Pet_update_View(request):
+    pet_info = get_object_or_404(Pet_info, pet_owner = request.user)
+    
+    if request.method == 'POST':
+        form = PetForm(request.POST, instance = pet_info)
+        if form.is_valid():
+            print("12314")
+            Pet = form.save(commit=False)
+            Pet.pet_owner = request.user
+            Pet.save()   
+            print("1")
+            return redirect("App_Main:pet")
+        context = {'form': form, 'Pet' : pet_info}
+        print("2")
+        return render(request, 'Pet_info.html',context)
+    else:
+        form = PetForm(instance = pet_info) # -> unboundForm
+    context = {'form': form, 'pet_info' : pet_info}
+    print("3")
     return render(request, 'Pet_create.html',context)
 
 def Pet_statistics_View(request):

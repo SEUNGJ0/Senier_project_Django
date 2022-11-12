@@ -6,6 +6,8 @@ const renderCalender = () => {
 
     document.querySelector('.year').textContent = `${viewYear}`;
     document.querySelector('.month').textContent = `${viewMonth + 1}`;
+    document.querySelector('.Select_year').textContent = `${viewYear}`;
+    document.querySelector('.Select_month').textContent = `${viewMonth + 1}`;
 
     const prevLast = new Date(viewYear, viewMonth, 0);
     const thisLast = new Date(viewYear, viewMonth + 1, 0);
@@ -44,7 +46,7 @@ const renderCalender = () => {
                 <div class="date-itm">
                     ${date}
                 </div>
-
+                
                 <div class="date_event">
                     <div class="event-itm"></div>
                 </div>
@@ -65,6 +67,7 @@ const renderCalender = () => {
             }
         }
     }
+
 };
 
 renderCalender();
