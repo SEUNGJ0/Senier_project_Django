@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<h5 class="border-bottom pb-2 mb-3">설정 페이지</h5>
+<div class="content_block">
+    <div class="table-responsive">
+        {% if Pet_diet_info %}
+        <table class="table table-sm table-hover" width = '10%'>
+            <tbody class="text-center">
+                <tr>
+                    <th class="align-middle" scope="col">반려견 이름</th>                            
+                    <td>{{ Pet_diet_info.pet_name }}</td>
+                </tr>
+                <tr>
+                    <th class="align-middle" scope="col">반려견 몸무게</th>                        
+                    <td step='0.01' >{{ Pet_diet_info.pet_weight }}KG</td>
+                </tr>
+                <tr>
+                    <th class="align-middle" scope="col">반려견 상태</th>                        
+                    <td>{{ Pet_diet_info.pet_status }}</td>
+                </tr>
+                <tr>
+                    <th class="align-middle" scope="col">첫 번째 급여</th>                        
+                    <td>{{ Pet_diet_info.pet_feed_time_B }}</td>
+                </tr>
+                <tr>
+                    <th class="align-middle" scope="col">두 번째 급여</th>                        
+                    <td>{{ Pet_diet_info.pet_feed_time_L }}</td>
+                </tr>
+                <tr>
+                    <th class="align-middle" scope="col">세 번째 급여</th>                        
+                    <td>
+                        {% if Pet_diet_info.pet_feed_time_D %}
+                        {{ Pet_diet_info.pet_feed_time_D }}
+                        {% else %}
+                        생략
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="{% url 'App_Main:pet_diet_update' %}" class="btn btn-sm text-light bg-dark" ">반려견 식단 정보 수정</a>
+        <a href="/" class="btn btn-sm text-light bg-dark">반려견 사료 지급량 최신화</a>
+        <table class="table table-sm table-hover" width = '10%'>
+            <tbody class="text-center">
+                <tr>
+                    <th class="align-middle" scope="col">반려견 하루 필요 칼로리</th>                  
+                    <td>{{ Pet_diet_info.pet_needKcal }}Kcal</td>
+                </tr>
+                <tr>
+                    <th class="align-middle" scope="col">반려견 사료 칼로리</th>                  
+                    <td>{{ Pet_diet_info.pet_feed_Kcal }}Kcal(100g)</td>
+                </tr>
+                <tr>
+                    <th class="align-middle" scope="col">하루 지급 사료 총량</th>                        
+                    <td>{{ Pet_diet_info.pet_feed_amount }}g</td>
+                </tr>
+            </tbody>
+        </table>
+        {% else %}
+        <h4> 등록된 식단 정보가 없습니다. 새로 등록해 주세요.</h4>
+        <a href="{% url 'App_Main:pet_diet_set' %}" class="btn btn-sm text-light bg-dark" ">반려견 식단 정보 등록</a>
+        {% endif %}
+        
+        
+        
+
+        {% if messages %}
+        {% for message in messages %}
+            <div class="row" style="margin:20px auto;">
+            <div class="col-sm-12">
+                <div class="alert alert-danger">
+                <strong>{{ message.tags }}!</strong> {{ message.message }}
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+        {% endif %}
+    </div>  
+</div>
+{% endblock %}
