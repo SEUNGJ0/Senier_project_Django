@@ -71,15 +71,16 @@ def Pet_diet_set_View(request):
     if request.method == 'POST':
         form = PetdietForm(request.POST, instance = pet_diet_info)
         if form.is_valid():
-            
+            Der = DER(float(request.POST['pet_weight']), request.POST['pet_status'])
             Pet_diet_info = form.save(commit=False)
             Pet_diet_info.pet_name = pet_info
-            Pet_diet_info.pet_needKcal = DER(Pet_diet_info.pet_weight, Pet_diet_info.pet_status)
-            Pet_diet_info.save()   
+            pet_diet_info.pet_needKcal = int(Der)
+            pet_diet_info.pet_feed_amount = round(Der / int(request.POST['pet_feed_Kcal']) * 100)
+            Pet_diet_info.save()
+               
             return redirect("App_Main:pet_diet_info")
     else:
         form = PetdietForm(instance = pet_diet_info) # -> unboundForm
-
+    print(pet_diet_info.pet_status, pet_diet_info.pet_feed_time_B, pet_diet_info.pet_feed_time_L)
     context = {'pet_diet_set':pet_diet_info,'pet_info' : pet_info, 'form': form}
     return render(request, 'Pet_diet_set.html', context)
-

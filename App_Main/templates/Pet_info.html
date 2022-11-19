@@ -11,12 +11,8 @@
                     <td>{{ Pet.pet_name }}</td>
                 </tr>
                 <tr>
-                    <th class="align-middle" scope="col">반려견 생일</th>
-                    {% if Pet.pet_birth %}                        
-                    <td>{{ Pet.pet_birth }}</td>
-                    {% else %}
-                    <td>생일이 등록되지 않았습니다.</td>
-                    {% endif %}
+                    <th class="align-middle" scope="col">반려견 생일</th>                     
+                    <td>{{ Pet.pet_birth|default:'생일이 등록되지 않았습니다.' }}</td>
                 </tr>
                 <tr>
                     <th class="align-middle" scope="col">반려견 몸무게</th>                        

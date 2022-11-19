@@ -15,9 +15,9 @@ class PetdietForm(forms.ModelForm):
 
     pet_feed_time_B = forms.TimeField(label='첫 번째 급여')
     pet_feed_time_L = forms.TimeField(label='두 번째 급여')
-    # pet_needKcal = forms.IntegerField()
-    pet_feed_amount = forms.IntegerField(label='사료 총량')
+    # 
 
     class Meta:
         model = Pet_diet_set
-        fields = ['pet_feed_Kcal','pet_status', 'pet_weight','pet_feed_time_B','pet_feed_time_L','pet_feed_time_D','pet_feed_amount']
+        fields = ['pet_feed_Kcal','pet_status', 'pet_weight','pet_feed_time_B','pet_feed_time_L','pet_feed_time_D',]
+

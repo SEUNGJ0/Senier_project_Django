@@ -10,7 +10,7 @@
                     <input type="number" step="0.01" class="form-control" name="pet_weight" id="pet_weight" placeholder="KG 단위로 입력해주세요." value="{{ pet_diet_set.pet_weight }}">
                 </div>
                 <div class="mb-3">
-                    <label for="pet_breed">사료 정보</label>
+                    <label for="pet_feed_Kcal">사료 정보</label>
                     <a href="https://tools.mypetlife.co.kr/food-calorie">참조 사이트</a>
                     <input type="number" class="form-control" name="pet_feed_Kcal" id="pet_feed_Kcal"
                     placeholder="100g당 Kcal단위로 숫자만 입력해주세요." value="{{ pet_diet_set.pet_feed_Kcal }}">
@@ -18,32 +18,29 @@
                 </div>
                 <div class="mb-3">
                     <label for="pet_status" >반려견 상태</label>
-                    <select name="pet_status" class="form-control" id="pet_status" value="{{ pet_diet_set.pet_status }}">
+                    <select name="pet_status" class="form-control" id="pet_status">
                         {% for i,j in pet_diet_set.pet_status_choices%}
-                        <option value={{i}}>{{i}}</option>,
+                            {% if i == pet_diet_set.pet_status %}
+                            <option value="{{ i }}" selected>{{i}}</option>
+                            {% else %}
+                            <option value="{{ i }}">{{i}}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>                    
                 </div>
 
                 <div class="mb-3">
                     <label for="pet_feed_time_B">첫 번째 급여 시간[필수]</label>
-                    <input type="time" class="form-control" name="pet_feed_time_B" id="pet_feed_time_B" value="{{ pet_diet_set.pet_feed_time_B }}">
+                    <input type="time" class="form-control" name="pet_feed_time_B" id="pet_feed_time_B" value="{{ pet_diet_set.pet_feed_time_B|time:'H:i' }}">
                 </div>
                 <div class="mb-3">
                     <label for="pet_feed_time_L">두 번째 급여 시간[필수]</label>
-                    <input type="time" class="form-control" name="pet_feed_time_L" id="pet_feed_time_L" value="{{ pet_diet_set.pet_feed_time_L }}">
+                    <input type="time" class="form-control" name="pet_feed_time_L" id="pet_feed_time_L" value="{{ pet_diet_set.pet_feed_time_L|time:'H:i' }}">
                 </div>
                 <div class="mb-3">
                     <label for="pet_feed_time_D">세 번째 급여 시간[생략 가능]</label>
-                    <input type="time" class="form-control" name="pet_feed_time_D" id="pet_feed_time_D" value="{{ pet_diet_set.pet_feed_time_D }}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="pet_feed_amount">지급 사료 총량</label>
-                    <input type="number" class="form-control" name="pet_feed_amount" id="pet_feed_amount"
-                    placeholder="그램(g) 단위로 입력" value="{{ pet_diet_set.pet_feed_amount }}">
-                </div>
-                
+                    <input type="time" class="form-control" name="pet_feed_time_D" id="pet_feed_time_D" value="{{ pet_diet_set.pet_feed_time_D|time:'H:i' }}">
+                </div>                
                 <button type="submit" style="width:100%; height:35px;" class="btn btn-sm text-light bg-dark mb-3">식단 정보 등록</button>
             </form>
         </div>

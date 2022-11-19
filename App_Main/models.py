@@ -25,7 +25,7 @@ class Pet_diet_set(models.Model):
         ('성견__체중증가', 'Adult_gain'),
         ('성견__아픔', 'Adult_Week'),
         ('성장기__생후 4개월 전', 'Growth_Ud4'),
-        ('성장기__4개월 이후~ 성견 전', 'Growth_Up4'),
+        ('성장기__4개월 이후 ~ 성견 전', 'Growth_Up4'),
         ('임신 전반 6주', 'Pregent_6W'),
         ('임신 전반 3주', 'Pregent_3W'),
         ('수유 1마리', 'Nursing_1'),

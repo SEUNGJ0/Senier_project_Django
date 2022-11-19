@@ -10,6 +10,6 @@ urlpatterns = [
     path('pet/statistics', Pet_statistics_View, name = 'pet_statistics'),
     path('pet/diet/info', Pet_info_View, name = 'pet_diet_info'),
     path('pet/diet/set', Pet_diet_set_View, name = 'pet_diet_set'),
-    path('pet/diet/update', Pet_diet_set_View, name = 'pet_diet_update')
+    path('pet/diet/update', Pet_diet_set_View, name = 'pet_diet_update'),
 ]
 

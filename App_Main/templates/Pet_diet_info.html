@@ -28,18 +28,11 @@
                 </tr>
                 <tr>
                     <th class="align-middle" scope="col">세 번째 급여</th>                        
-                    <td>
-                        {% if Pet_diet_info.pet_feed_time_D %}
-                        {{ Pet_diet_info.pet_feed_time_D }}
-                        {% else %}
-                        생략
-                        {% endif %}
-                    </td>
+                    <td>{{ Pet_diet_info.pet_feed_time_D|default:'생략' }}</td>
                 </tr>
             </tbody>
         </table>
         <a href="{% url 'App_Main:pet_diet_update' %}" class="btn btn-sm text-light bg-dark" ">반려견 식단 정보 수정</a>
-        <a href="/" class="btn btn-sm text-light bg-dark">반려견 사료 지급량 최신화</a>
         <table class="table table-sm table-hover" width = '10%'>
             <tbody class="text-center">
                 <tr>
