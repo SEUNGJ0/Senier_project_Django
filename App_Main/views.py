@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from . models import *
 from . forms import *
 from . Calcul import DER
@@ -61,7 +62,12 @@ def Pet_statistics_View(request):
 
 @login_required(login_url='App_Auth:login')
 def Pet_diet_set_View(request):
-    pet_info = get_object_or_404(Pet_info, pet_owner = request.user)
+    try:
+        pet_info = get_object_or_404(Pet_info, pet_owner = request.user)
+    except:
+        messages.error(request, '변려견을 먼저 등록해주세요!')
+        return redirect("App_Main:pet_diet_info")
+
     if request.path == '/pet/diet/update':
         pet_diet_info = get_object_or_404(Pet_diet_set, pet_name = pet_info )
         
@@ -72,15 +78,15 @@ def Pet_diet_set_View(request):
         form = PetdietForm(request.POST, instance = pet_diet_info)
         if form.is_valid():
             Der = DER(float(request.POST['pet_weight']), request.POST['pet_status'])
-            Pet_diet_info = form.save(commit=False)
-            Pet_diet_info.pet_name = pet_info
+
+            pet_diet_info = form.save(commit=False)
+            pet_diet_info.pet_name = pet_info
             pet_diet_info.pet_needKcal = int(Der)
             pet_diet_info.pet_feed_amount = round(Der / int(request.POST['pet_feed_Kcal']) * 100)
-            Pet_diet_info.save()
+            pet_diet_info.save()
                
             return redirect("App_Main:pet_diet_info")
     else:
         form = PetdietForm(instance = pet_diet_info) # -> unboundForm
-    print(pet_diet_info.pet_status, pet_diet_info.pet_feed_time_B, pet_diet_info.pet_feed_time_L)
-    context = {'pet_diet_set':pet_diet_info,'pet_info' : pet_info, 'form': form}
+    context = {'pet_diet_set':pet_diet_info,'pet_info' : pet_info, 'form': form,'pet_status_choices':pet_status_choices}
     return render(request, 'Pet_diet_set.html', context)

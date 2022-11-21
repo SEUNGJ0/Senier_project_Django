@@ -10,12 +10,12 @@ class PetForm(forms.ModelForm):
 
 class PetdietForm(forms.ModelForm):
     pet_feed_Kcal = forms.IntegerField(label='사료 칼로리')
-    pet_status = forms.ChoiceField(choices = Pet_diet_set.pet_status_choices, label='반려견 상태')
+    pet_status = forms.ChoiceField(choices = pet_status_choices, label='반려견 상태')
     pet_weight = forms.CharField(label='체중')
 
     pet_feed_time_B = forms.TimeField(label='첫 번째 급여')
     pet_feed_time_L = forms.TimeField(label='두 번째 급여')
-    # 
+
 
     class Meta:
         model = Pet_diet_set

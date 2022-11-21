@@ -35,4 +35,3 @@ def DER(Pet_weight,pet_status_index):
 
 
 
-

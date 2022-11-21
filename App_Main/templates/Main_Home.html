@@ -2,7 +2,11 @@
 {% block content %}
 <div class="container" width="10px">
     <h1 class="mt-4">홈 화면</h1>
+    {% if user.is_authenticated %} 
     <p>홈 화면에 띄울 내용 출력</p>
-    <p>전체 내용의 간략한 내용 출력</p>   
+    <p>전체 내용의 간략한 내용 출력</p>
+    {% else %}
+    <p>우측 상단에서 회원가입 또는 로그인을 진행해주세요.</p>
+    {% endif %}
 </div>
 {% endblock %}

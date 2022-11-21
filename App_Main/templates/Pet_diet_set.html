@@ -19,7 +19,7 @@
                 <div class="mb-3">
                     <label for="pet_status" >반려견 상태</label>
                     <select name="pet_status" class="form-control" id="pet_status">
-                        {% for i,j in pet_diet_set.pet_status_choices%}
+                        {% for i,j in pet_status_choices%}
                             {% if i == pet_diet_set.pet_status %}
                             <option value="{{ i }}" selected>{{i}}</option>
                             {% else %}
