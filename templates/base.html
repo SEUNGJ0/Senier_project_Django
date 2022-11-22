@@ -23,12 +23,12 @@
                 <td width="5%">
                     <a class="navbar-brand" href="/">캡스톤</a>
                 </td>
-                <td width="50%"></td>
+                <td class='custom_td' width="50%"></td>
                 <td width="10%">
                     <div class="nav navbar-nav ml-auto">
                         
                             {% if user.is_authenticated %}  
-                            <a class="nav-link" href="/admin"><i class="fas fa-user-plus"></i>{{ user.user_name }}</a>
+                            <a class="nav-link" href="/admin"><i class="fas fa-user-plus"></i>{{ user }}</a>
                             <a class="nav-link" href="{% url 'App_User:logout' %}">Logout</a>
                             {% else %}
                             <a class="nav-link" href="{% url 'App_User:signup' %}"><i class="fas fa-user-plus"></i> Sign</a>
