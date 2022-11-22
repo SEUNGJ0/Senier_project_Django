@@ -3933,10 +3933,11 @@ textarea.form-control-lg {
 
 .nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  
 }
 
 .nav-link {
@@ -4058,7 +4059,8 @@ textarea.form-control-lg {
 }
 .navbar-nav {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
@@ -4226,7 +4228,7 @@ textarea.form-control-lg {
     overflow-y: visible;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 350px) {
   .navbar-expand-lg {
     flex-wrap: nowrap;
     justify-content: flex-start;
