@@ -3,42 +3,32 @@ const exitBtn = document.querySelector('.resv-close');
 exitBtn.addEventListener('click', ()=>{resvTab.classList.remove('open');});
 
 
-
 // 날짜별로 이벤트 등록용 함수 및 변수
 const selDate = []
-
 const dateFunc = ()=>{
     const dates = document.querySelectorAll('.date');
     const year = document.querySelector('.year');
     const month = document.querySelector('.month');
-    
-
-
     dates.forEach((i)=>{
         i.addEventListener('click', ()=>{
             if(i.classList.contains('other') || i.classList.contains('selected')){
                 dates.forEach((ig)=>{ig.classList.remove('selected');});
                 i.classList.remove('selected');
                 selDate.length=0;
+                
             }else if(selDate.length > 0){
                 dates.forEach((ig)=>{ig.classList.remove('selected');});
                 selDate.length=0;
                 i.classList.add('selected');
                 selDate.push([year.innerHTML, month.innerHTML, i.innerHTML]);
-
-                document.querySelector('.Select_date').textContent = `${i.innerHTML}`;
-                
                 resvTab.classList.add('open');
+
             }else{
                 i.classList.add('selected');
                 selDate.push([year.innerHTML, month.innerHTML, i.innerHTML]);
-
-                document.querySelector('.Select_date').textContent = `${i.innerHTML}`;
-
                 resvTab.classList.add('open');
             }
         });
-        
     });
 };
 

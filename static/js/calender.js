@@ -6,6 +6,7 @@ const renderCalender = () => {
 
     document.querySelector('.year').textContent = `${viewYear}`;
     document.querySelector('.month').textContent = `${viewMonth + 1}`;
+    
     document.querySelector('.Select_year').textContent = `${viewYear}`;
     document.querySelector('.Select_month').textContent = `${viewMonth + 1}`;
 
