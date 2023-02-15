@@ -31,7 +31,6 @@
 .go-today {
     width: 80%;
 }
-
 .calendar_main{
     border-collapse: collapse;
     width: 100%;
@@ -93,30 +92,29 @@
     color: rgba(88, 88, 88, 0.315) !important;
 }
 
-.today {
+.current-date {
     position: relative;
     background-color: #ff1c1c96;
     color: #ffffff !important;
 }
 
-.selected{
+.selected-date{
     background-color: black;
     color: #ffffff !important;
 }
-
 
 /* RESERVE TAB */
 .resv-wrapper{
     z-index: 10;
     top: 0;
-    left: 0;
+    left: 28%;
     position: fixed;
     width: 100%;
     height: 100vh;
-    background-color: #3333335b;
     display: none;
     justify-content: center;
 }
+
 
 .resv-wrapper.open{
     display: flex;
@@ -126,7 +124,7 @@
     width: 50%;
     position: relative;
     padding: 5% 5%;
-    background-color: #ffffff;
+    background-color: #000000b7;
     height: fit-content;
     top: 50%;
     transform: translateY(-50%);
@@ -136,44 +134,22 @@
 
 .resv-close{
     cursor: pointer;
-    font-size: 20px;
-    background-color: #ffffff;
+    font-size: 10px;
+    background-color: #00000000;
+    color: white;
     text-align: right;
     float: right;
 }
 
-/* 예약인 리스트 */
-.resv-list{
+/* 예약 리스트 */
+.resv_info{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     width: 80%;
     margin: auto;
     font-size: 15px;
-}
-
-.resv-list > p{
-    display: inline-block;
-    padding: 5px;
-    margin: 5px;
-    border: 2px solid var(--BG);
-}
-
-.resv_set{
-    cursor: pointer;
-    width: 80%;
-    margin: auto;
-    margin-top: 10px;
-    font-size: 20px;
-}
-
-.resv_btn{
-    cursor: pointer;
-    font-size: 18px;
-    width: 40%;
-    height: 30px;
-    margin-top: 20px;
-    padding: 5px 0px;
+    color: white;
 }
 
 @media screen and (max-width: 280px) {
