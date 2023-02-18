@@ -14,16 +14,17 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'channels',
-    'App_Main',
-    'App_User',
-    'App_WSC',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'App_Main',
+    'App_User',
+    'App_WSC',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
+# WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -128,10 +129,4 @@ LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'App_User.User'
 
 # WebSocket으로 추가된 구문
-ASGI_APPLICATION = 'config.routing.application'
-
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    },
-}
+ASGI_APPLICATION = "config.asgi.application"
