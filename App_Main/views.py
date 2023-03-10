@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+import json
 from . models import *
 from . forms import *
 from . Calcul import DER
@@ -12,6 +13,9 @@ def Main_Home(request):
 def Pet_info_View(request):
     try:
         Pet = Pet_info.objects.get(pet_owner=request.user)
+        print(request.user)
+        print(type(request.user))
+        
     except:
         Pet = None
    
@@ -58,7 +62,16 @@ def Pet_update_View(request):
     return render(request, 'Pet_create.html',context)
 
 def Pet_statistics_View(request):
-    return render(request, 'Pet_statistics.html')
+    try:
+        pet_info = get_object_or_404(Pet_info, pet_owner = request.user)
+    except:
+        messages.error(request, '변려견을 먼저 등록해주세요!')
+        return redirect("App_Main:pet_diet_info")
+    
+    pet_diet_info = get_object_or_404(Pet_diet_set, pet_name = pet_info )
+
+    content = {'pet_diet_info':pet_diet_info,}
+    return render(request, 'Pet_statistics.html', content)
 
 @login_required(login_url='App_Auth:login')
 def Pet_diet_set_View(request):

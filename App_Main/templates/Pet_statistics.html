@@ -33,15 +33,16 @@
             <button class="resv-close">X</button>
             <div class="resv_info">
                 <div class="resv_ym" style="text-align: center ">
-                    <span class="Select_year"></span>년
-                    <span class="Select_month"></span>월
-                    <span class="Select_dates"></span>일
                     <h3>
-                        오늘의 급여 기록
-                    </h3>
-                    <p>설정 시간 1</p>
-                    <p>설정 시간 2</p>
-                    <p>설정 시간 3</p>
+                        <span class="Select_year"></span>년
+                        <span class="Select_month"></span>월
+                        <span class="Select_dates"></span>일의 급여 기록
+                    </h3>       
+                    <p>{{pet_diet_info.pet_feed_time_B}}</p>
+                    <p>{{pet_diet_info.pet_feed_time_L}}</p>
+                    {% if pet_diet_info.pet_feed_time_D %}
+                    <p>{{pet_diet_info.pet_feed_time_D}}</p>
+                    {% endif%}
                 </div>    
             </div>
         </div>

@@ -130,3 +130,9 @@ AUTH_USER_MODEL = 'App_User.User'
 
 # WebSocket으로 추가된 구문
 ASGI_APPLICATION = "config.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    },
+}
