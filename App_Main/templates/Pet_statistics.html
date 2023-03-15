@@ -27,7 +27,7 @@
         <div class="dates"></div>
     </div>
 
-    <!-- 예약 창 -->
+    <!-- 상세창 -->
     <div class="resv-wrapper" style="display: none;">
         <div class="resv-bg">
             <button class="resv-close">X</button>
@@ -37,12 +37,10 @@
                         <span class="Select_year"></span>년
                         <span class="Select_month"></span>월
                         <span class="Select_dates"></span>일의 급여 기록
-                    </h3>       
-                    <p>{{pet_diet_info.pet_feed_time_B}}</p>
-                    <p>{{pet_diet_info.pet_feed_time_L}}</p>
-                    {% if pet_diet_info.pet_feed_time_D %}
-                    <p>{{pet_diet_info.pet_feed_time_D}}</p>
-                    {% endif%}
+                    </h3>
+                    <p class="feedings">
+                        <br>
+                    </p>
                 </div>    
             </div>
         </div>

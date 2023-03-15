@@ -25,13 +25,12 @@ class SensorConsumer(AsyncWebsocketConsumer):
 
     # connect : 사용자와 websocket 연결이 맺어졌을때 호출
     async def connect(self):
-        print('연결 성공\n통신을 시작합니다...')
-        time.sleep(1)
+        print('Connect...')
         await self.accept()
 
     # disconnect : 사용자와 websocket 연결이 끊겼을때 호출
     async def disconnect(self, close_code):
-        print('통신 끝\n연결을 종료합니다...')
+        print('Disconnect...')
         pass
 
     # receive : 사용자가 메시지를 보내면 호출
@@ -42,14 +41,10 @@ class SensorConsumer(AsyncWebsocketConsumer):
         with open("Pet_feed.json",'w') as file:
             file.write(json.dumps(pet_feed_dict, ensure_ascii=False, indent=4))
 
-        print(f"펫 주인 : {Pet_owner}")
         if Pet_owner == 'kuksj0312@naver.com':
             # admin의 User id == 1
             Pet_owner_id = 1
             
-        pet_diet_info = await self.get_pet_diet_set(Pet_owner_id)
-
-        print(f"펫 이름 : {pet_diet_info['pet_name']}")
-        
+        pet_diet_info = await self.get_pet_diet_set(Pet_owner_id)        
         # pet_diet_info 딕셔너리를 Json 파일로 변환하여 클라이언트에 전송, ensure_ascii : 한글 깨짐 방지, indent : 예쁘게 보냄
         await self.send(json.dumps(pet_diet_info, ensure_ascii=False, indent=4))

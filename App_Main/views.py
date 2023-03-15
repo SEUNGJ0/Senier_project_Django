@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-import json
 from . models import *
 from . forms import *
 from . Calcul import DER

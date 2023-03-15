@@ -20,6 +20,7 @@ dates.addEventListener('click', (event) => {
     selectMonthElem.innerHTML = selectedMonth;
     selectDateElem.innerHTML = selectedDate;
 
+    
     // Show the reservation window
     resvWrapper.style.display = 'block';
 });
