@@ -17,9 +17,9 @@ class SensorConsumer(AsyncWebsocketConsumer):
         pet_diet_info_dict = {
             'pet_name' : str(pet_diet_set.pet_name),
             'pet_feed_amount' : str(pet_diet_set.pet_feed_amount),
-            'pet_feed_time_B' : str(pet_diet_set.pet_feed_time_B),
-            'pet_feed_time_L' : str(pet_diet_set.pet_feed_time_L),
-            'pet_feed_time_D' : str(pet_diet_set.pet_feed_time_D),
+            'pet_feed_time_B' : str(pet_diet_set.pet_feed_time_B)[:5],
+            'pet_feed_time_L' : str(pet_diet_set.pet_feed_time_L)[:5],
+            'pet_feed_time_D' : str(pet_diet_set.pet_feed_time_D)[:5],
         }
         return pet_diet_info_dict
 

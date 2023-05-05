@@ -79,7 +79,9 @@ function handleClickDate(event) {
         // 파싱된 데이터를 처리한다.
         .then(data => {
             // 선택된 날짜의 먹이 기록을 찾는다.
-            const feedings = data.Pet_daily_feed.find(feed => feed.date === `${selectedYear}-${"0"+(selectedMonth+1)}-${selectedDate}`);
+                // 날짜 양식 맞춤
+            const ModifiedMonth = (selectedMonth + 1).toString().padStart(2, '0'); 
+            const feedings = data.Pet_daily_feed.find(feed => feed.date === `${selectedYear}-${ModifiedMonth}-${selectedDate}`);
             // 선택된 날짜에 먹이 기록이 있다면
             if (feedings) {
                 // HTML에서 먹이 기록 리스트 요소를 찾는다.
@@ -96,9 +98,9 @@ function handleClickDate(event) {
                     feedingElem.innerHTML= `
                         <p>
                             <div class="feeding-time">지급 시간 : ${feeding.time}</div>
-                            <div class="feeding-time">지급 여부 : ${feeding.feed_index}</div>
-                            <div class="feeding-food">지급 양 : ${feeding.feed_amount}</div>
-                            <div class="feeding-amount">잔여량 : ${feeding.remain_amount}</div>
+                            <div class="feeding-food">설정된 급여량 : ${feeding.feed_amount}g</div>
+                            <div class="feeding-time">급여된 양 : ${feeding.feed_index}g</div>
+                            <div class="feeding-amount">잔여량 : ${feeding.remain_amount}g</div>
                             <div>-----------------</div>
                         </p>
                     `;
