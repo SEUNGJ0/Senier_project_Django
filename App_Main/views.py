@@ -5,10 +5,16 @@ from . forms import *
 from . Calcul import DER
 # 함수형 뷰에서 사용하는 권한 제한
 from django.contrib.auth.decorators import login_required
+import json
 
 def Main_Home(request):
-    return render(request, 'Main_Home.html')
+    if request.method == 'POST' and request.POST['feed_amount']:
+        feed_amount = {'feed_amount':request.POST['feed_amount']}
+        with open('Feed_Amount.json', 'w', encoding="utf-8") as make_file:
+            json.dump(feed_amount, make_file)
+        
 
+    return render(request, 'Main_Home.html')
 def Pet_info_View(request):
     try:
         Pet = Pet_info.objects.get(pet_owner=request.user)

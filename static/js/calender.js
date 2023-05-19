@@ -100,10 +100,10 @@ function handleClickDate(event) {
                             <div class="feeding-time">지급 시간 : ${feeding.time}</div>
                             <div class="feeding-food">설정된 급여량 : ${feeding.feed_amount}g</div>
                             <div class="feeding-time">급여된 양 : ${feeding.feed_index}g</div>
-                            <div class="feeding-amount">잔여량 : ${feeding.remain_amount}g</div>
                             <div>-----------------</div>
                         </p>
                     `;
+                    //<div class="feeding-amount">잔여량 : ${feeding.remain_amount}g</div>
                     // 새로운 먹이 기록 요소를 먹이 기록 리스트 요소에 추가한다.
                     feedingsList.appendChild(feedingElem);
                 });

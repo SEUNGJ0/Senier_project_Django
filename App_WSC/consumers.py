@@ -10,6 +10,9 @@ class SensorConsumer(AsyncWebsocketConsumer):
     # 쿼리문 추출 동기 함수
     @database_sync_to_async
     def get_pet_diet_set(self, Pet_owner_id):
+        with open('Feed_Amount.json', 'r') as f:
+            json_data = json.load(f)
+
         # 전달받은 Pet_owner_id로 펫 정보 가져옴
         pet_info = Pet_info.objects.get(pet_owner = Pet_owner_id)
         # 펫 정보와 일치하는 펫 식단 설정 정보를 추출 및 리턴
@@ -20,7 +23,11 @@ class SensorConsumer(AsyncWebsocketConsumer):
             'pet_feed_time_B' : str(pet_diet_set.pet_feed_time_B)[:5],
             'pet_feed_time_L' : str(pet_diet_set.pet_feed_time_L)[:5],
             'pet_feed_time_D' : str(pet_diet_set.pet_feed_time_D)[:5],
+            'pet_feed_amount_now' : json_data['feed_amount']
         }
+        feed_amount = {'feed_amount':''}
+        with open('Feed_Amount.json', 'w', encoding="utf-8") as file:
+            json.dump(feed_amount,file)
         return pet_diet_info_dict
 
     # connect : 사용자와 websocket 연결이 맺어졌을때 호출

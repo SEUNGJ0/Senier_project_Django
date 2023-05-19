@@ -1,10 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container" width="10px">
-    <h1 class="mt-4">홈 화면</h1>
+    <h1 class="mt-4">정보통신공학과</h1>
+    <h2>스마트 자동 급여기</h2>
     {% if user.is_authenticated %} 
-    <p>홈 화면에 띄울 내용 출력</p>
-    <p>전체 내용의 간략한 내용 출력</p>
+    <p>당신의 반려견을 위한 스마트 자동 급여기를 소개합니다. </p>
+    <p>이 기기는 사용자가 저희가 제공하는 웹사이트에 입력한 정보를 기반으로 정해진 시간에 적정량의 사료를 자동으로 공급해 줍니다.</p>
+    <p>이를 위해 무게 센서와 모터를 사용하여 추출 메커니즘과 웹 서버와의 실시간 통신을 라즈베리파이를 통해 구현하였습니다.</p>
+    <p>이 스마트 자동 급여기를 사용하면 바쁜 일상에서도 반려견의 식사 챙김에 대한 걱정과 올바른 식사 습관 형성에 도움을 줄 수 있습니다.</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <label for="Amount">추출량</label>
+            <input type="number" step="1" class="form-control" name="feed_amount" id="feed_amount"
+            placeholder="g 단위 입력[0~500]">
+        <button type="submit" style="width:100%; height:35px;" class="btn btn-sm text-light bg-dark mb-3">추출</button>
+    </form>
     {% else %}
     <p>우측 상단에서 회원가입 또는 로그인을 진행해주세요.</p>
     {% endif %}
