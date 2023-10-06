@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'App_Main',
     'App_User',
     'App_WSC',
+    'django_dbml',
 ]
 
 MIDDLEWARE = [
