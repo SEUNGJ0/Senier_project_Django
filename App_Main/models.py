@@ -24,7 +24,6 @@ pet_status_choices = [
 
 class Pet_info(models.Model):
     pet_owner = models.ForeignKey(User, on_delete=models.CASCADE)
-
     pet_name = models.CharField(max_length = 100)
     pet_birth = models.DateField(null = True, blank = True)
 
@@ -36,9 +35,7 @@ class Pet_info(models.Model):
         return self.pet_name
 
 class Pet_diet_set(models.Model):
-
     pet_name = models.ForeignKey(Pet_info, on_delete = models.CASCADE)
-
     pet_weight = models.DecimalField(decimal_places=2, max_digits = 100)
     pet_feed_Kcal = models.IntegerField()
     pet_status = models.CharField(max_length=100, choices = pet_status_choices ,verbose_name="반려견 상태")
@@ -50,13 +47,15 @@ class Pet_diet_set(models.Model):
     pet_needKcal = models.IntegerField(verbose_name="하루 필요 칼로리")
     pet_feed_amount = models.IntegerField(verbose_name="사료 총량")
 
-class Pet_daily_feed(models.Model):
+class Pet_daily_feeding(models.Model):
     pet_name = models.ForeignKey(Pet_info, on_delete = models.CASCADE)
 
-    Daily_date = models.DateField(verbose_name = "날짜")
-    Daily_feed = models.IntegerField(verbose_name = '지급된 사료량')
-    Remain_feed = models.IntegerField(verbose_name = "남은 사료량", null = True)
+    feed_date = models.DateField(verbose_name = "날짜")
+    feed_time = models.TimeField(verbose_name = "급여 시간")
+    feed_amount = models.IntegerField(verbose_name = '급여된 사료량')
+    remain_amount = models.IntegerField(verbose_name = "남은 사료량", null = True)
+    feed_index = models.BooleanField(default=False)
 
     def __str__(self):
     # 객체를 출력할 떄 나타날 값
-        return f"{self.Daily_date} 지급 일지"    
+        return f"{self.feed_date} - {self.pet_name}"    

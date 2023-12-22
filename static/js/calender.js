@@ -99,7 +99,8 @@ function handleClickDate(event) {
                         <p>
                             <div class="feeding-time">지급 시간 : ${feeding.time}</div>
                             <div class="feeding-food">설정된 급여량 : ${feeding.feed_amount}g</div>
-                            <div class="feeding-time">급여된 양 : ${feeding.feed_index}g</div>
+                            <div class="feeding-food">급여된 양 : ${feeding.feed_index}g</div>
+                            <div class="feeding-food">잔여 급식량 : ${feeding.remain_amount}g</div>
                             <div>-----------------</div>
                         </p>
                     `;

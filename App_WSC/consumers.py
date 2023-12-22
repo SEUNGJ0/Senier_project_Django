@@ -1,9 +1,7 @@
-# consumers.py
-import json
-
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 from App_Main.models import Pet_info, Pet_diet_set
+import json
 
 class SensorConsumer(AsyncWebsocketConsumer):
     # 쿼리문 추출 동기 함수
