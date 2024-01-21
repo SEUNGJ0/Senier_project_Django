@@ -13,11 +13,11 @@ class PetPagination(PageNumberPagination):
 class PetDietSetList(APIView):
     def get(self, request):
         pet_name = Pet_info.objects.get(pet_owner = request.user)
-        dietsetting = Pet_diet_set.objects.filter(pet_name = pet_name)
-        serializers = Pet_diet_setSerializer(dietsetting, many = True)
+        dietset = Pet_diet_set.objects.filter(pet_name = pet_name)
+        serializers = Pet_diet_setSerializer(dietset, many = True)
         return Response(serializers.data, status=status.HTTP_200_OK)
     
-class PetDailyFeedingList(APIView, PaginationHandlerMixin):
+class PetDailyFeedingList_Page(APIView, PaginationHandlerMixin):
     pagination_class = PetPagination
     serializer_class = Pet_daily_feedingSerializer
     def get(self, request):
@@ -37,3 +37,10 @@ class PetDailyFeedingList(APIView, PaginationHandlerMixin):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+        
+class PetDailtFeedingList_ALL(APIView):
+    def get(self, request):
+        pet_name = Pet_info.objects.get(pet_owner = request.user)
+        instance = Pet_daily_feeding.objects.filter(pet_name = pet_name)
+        serializers = Pet_daily_feedingSerializer(instance, many = True)
+        return Response(serializers.data, status=status.HTTP_200_OK)

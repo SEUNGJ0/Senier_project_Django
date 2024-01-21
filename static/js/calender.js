@@ -73,49 +73,40 @@ function handleClickDate(event) {
     document.querySelector('.resv-wrapper').style.display = 'block';
 
     // 지정된 URL에서 JSON 데이터를 가져온다.
-    fetch('../wsc/json/feeddata')
-        // 응답 데이터를 JSON으로 파싱한다.
-        .then(response => response.json())
-        // 파싱된 데이터를 처리한다.
-        .then(data => {
-            // 선택된 날짜의 먹이 기록을 찾는다.
-                // 날짜 양식 맞춤
-            const ModifiedMonth = (selectedMonth + 1).toString().padStart(2, '0'); 
-            const feedings = data.Pet_daily_feed.find(feed => feed.date === `${selectedYear}-${ModifiedMonth}-${selectedDate}`);
-            // 선택된 날짜에 먹이 기록이 있다면
-            if (feedings) {
-                // HTML에서 먹이 기록 리스트 요소를 찾는다.
-                const feedingsList = document.querySelector('.feedings');
-                // 기존에 있는 먹이 기록 리스트 요소의 HTML을 지운다.
-                feedingsList.innerHTML = '';
-                // 선택된 날짜의 모든 먹이 기록에 대해
-                feedings.feedings.forEach(feeding => {
-                    // 새로운 HTML 요소를 생성한다.
-                    const feedingElem = document.createElement('div');
-                     // 생성한 요소에 "feeding" CSS 클래스를 추가한다.
-                    feedingElem.classList.add('feeding');
-                    // 생성한 요소의 innerHTML을 먹이 시간, 음식, 양으로 설정한다.
-                    feedingElem.innerHTML= `
-                        <p>
-                            <div class="feeding-time">지급 시간 : ${feeding.time}</div>
-                            <div class="feeding-food">설정된 급여량 : ${feeding.feed_amount}g</div>
-                            <div class="feeding-food">급여된 양 : ${feeding.feed_index}g</div>
-                            <div class="feeding-food">잔여 급식량 : ${feeding.remain_amount}g</div>
-                            <div>-----------------</div>
-                        </p>
-                    `;
-                    //<div class="feeding-amount">잔여량 : ${feeding.remain_amount}g</div>
-                    // 새로운 먹이 기록 요소를 먹이 기록 리스트 요소에 추가한다.
-                    feedingsList.appendChild(feedingElem);
-                });
-            } else {
-                console.log('실패!')
-                // 선택된 날짜에 먹이 기록이 없다면, 먹이 기록 리스트 요소의 HTML을 변경해 메시지를 표시한다.
-                document.querySelector('.feedings').innerHTML = '<div class="no-feedings">No feedings found for this day</div>';
-            }
-        })
-        // fetch 및 데이터 처리 중에 발생하는 모든 오류를 처리한다.
-        .catch(error => console.error(error));
+    fetch('../api/daily-feeding-all')
+    .then(response => response.json())
+    .then(data => {
+        // 날짜 양식 맞춤
+        const ModifiedMonth = (selectedMonth + 1).toString().padStart(2, '0');
+        const ModifiedDate = selectedDate.padStart(2, '0'); 
+        // Find feeding records for the selected date
+        const feedings = data.filter(feed => feed.feed_date === `${selectedYear}-${ModifiedMonth}-${ModifiedDate}`);
+        // Check if there are feeding records for the selected date
+        if (feedings.length > 0) {
+            const feedingsList = document.querySelector('.feedings');
+            feedingsList.innerHTML = ''; // Clear existing HTML
+
+            // Loop through each feeding record for the selected date
+            feedings.forEach(feeding => {
+                const feedingElem = document.createElement('div');
+                feedingElem.classList.add('feeding');
+                feedingElem.innerHTML = `
+                    <p>
+                        <div class="feeding-feed_time">지급 시간 : ${feeding.feed_time}</div>
+                        <div class="feeding-food">설정된 급여량 : ${feeding.feed_amount}g</div>
+                        <div class="feeding-food">급여된 양 : ${feeding.feed_index ? '급여됨' : '급여되지 않음'}</div>
+                        <div class="feeding-food">잔여 급식량 : ${feeding.remain_amount}g</div>
+                        <div>-----------------</div>
+                    </p>
+                `;
+                feedingsList.appendChild(feedingElem);
+            });
+        } else {
+            // No feeding records found for the selected date
+            document.querySelector('.feedings').innerHTML = '<div class="no-feedings">No feedings found for this day</div>';
+        }
+    })
+    .catch(error => console.error(error));
 
 }
 
