@@ -18,9 +18,6 @@ def Main_Home(request):
 def Pet_info_View(request):
     try:
         Pet = Pet_info.objects.get(pet_owner=request.user)
-        print(request.user)
-        print(type(request.user))
-        
     except:
         Pet = None
    
@@ -72,9 +69,12 @@ def Pet_statistics_View(request):
     except:
         messages.error(request, '변려견을 먼저 등록해주세요!')
         return redirect("App_Main:pet_diet_info")
-    
-    pet_diet_info = get_object_or_404(Pet_diet_set, pet_name = pet_info )
-
+    try:
+        pet_diet_info = get_object_or_404(Pet_diet_set, pet_name = pet_info )
+    except:
+        messages.error(request, '반려견의 식단 정보를 설정해주세요.')
+        return redirect("App_Main:pet_diet_info")
+#Pet_daily_feeding
     content = {'pet_diet_info':pet_diet_info,}
     return render(request, 'Pet_statistics.html', content)
 

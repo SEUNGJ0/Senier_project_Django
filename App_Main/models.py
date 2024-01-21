@@ -46,6 +46,7 @@ class Pet_diet_set(models.Model):
     
     pet_needKcal = models.IntegerField(verbose_name="하루 필요 칼로리")
     pet_feed_amount = models.IntegerField(verbose_name="사료 총량")
+    pet_standard_feed = models.IntegerField(verbose_name='기준 급식량', null = True)
 
 class Pet_daily_feeding(models.Model):
     pet_name = models.ForeignKey(Pet_info, on_delete = models.CASCADE)
