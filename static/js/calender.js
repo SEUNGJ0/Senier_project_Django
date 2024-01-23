@@ -103,7 +103,7 @@ function handleClickDate(event) {
             });
         } else {
             // No feeding records found for the selected date
-            document.querySelector('.feedings').innerHTML = '<div class="no-feedings">No feedings found for this day</div>';
+            document.querySelector('.feedings').innerHTML = '<div class="no-feedings">기록된 급식 데이터가 없습니다!</div>';
         }
     })
     .catch(error => console.error(error));
